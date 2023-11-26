@@ -41,7 +41,10 @@ class JsonDiffer {
       return _diffLists((leftJson as List).cast<Object?>(),
           (rightJson as List).cast<Object?>(), null, []);
     }
-    return DiffNode([])..changed[''] = [leftJson, rightJson];
+    if (leftJson != rightJson) {
+      return DiffNode([])..changed[''] = [leftJson, rightJson];
+    }
+    return DiffNode([]);
   }
 
   DiffNode _diffObjects(Map<String, Object?> left, Map<String, Object?> right,

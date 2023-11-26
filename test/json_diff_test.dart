@@ -33,6 +33,15 @@ void main() {
     expect(node.node, isEmpty);
   });
 
+  test('JsonDiffer diff() identical values', () {
+    differ = JsonDiffer.fromJson(1, 1);
+    final node = differ.diff();
+    expect(node.added, isEmpty);
+    expect(node.removed, isEmpty);
+    expect(node.changed, isEmpty);
+    expect(node.node, isEmpty);
+  });
+
   test('JsonDiffer diff() comparing a list and a map', () {
     final differ = JsonDiffer.fromJson([1, 2], {'foo': 'bar'});
     final node = differ.diff();
